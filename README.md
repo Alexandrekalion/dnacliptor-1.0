@@ -1,107 +1,81 @@
-# Logi3A Soluções
+# DNA Cliptor 1.0
 
-Aplicação educacional com frontend em React + CRACO e backend em FastAPI para cadastro/login, gerenciamento de materiais, leitura de códigos, registro de atividades e estatísticas.
+Aplicacao web educacional para simular leitura de QR Code e codigo de barras em atividades de logistica.
 
-## Estrutura
+## Visao geral
 
-- `frontend/`: interface React.
-- `backend/`: API FastAPI.
+DNA Cliptor 1.0 e uma plataforma educacional com frontend React e backend FastAPI. O projeto oferece uma experiencia de aprendizagem voltada a leitura optica, rastreabilidade, materiais logisticos, atividades de aluno e acompanhamento por professor.
 
-## Requisitos
+O repositorio combina uma interface web, API, geracao de QR Code, leitura de codigo de barras, historico de atividades e suporte a banco MongoDB ou banco em memoria para desenvolvimento local.
 
-- Node.js 20+
-- npm 10+
-- Python 3.11+
+## Problema resolvido
 
-## Variáveis de ambiente
+Atividades sobre logistica e rastreabilidade podem ficar abstratas quando explicadas apenas em teoria. Este projeto transforma conceitos de QR Code, codigo de barras e identificacao de materiais em uma experiencia pratica para alunos e professores.
 
-### Frontend
+## Publico e contexto de uso
 
-Crie `frontend/.env` a partir de [`frontend/.env.example`](./frontend/.env.example):
+- Professores que querem demonstrar leitura de codigos em atividades praticas.
+- Alunos aprendendo conceitos de logistica, estoque e rastreabilidade.
+- Projetos educacionais que precisam de uma simulacao web para leitura e acompanhamento.
 
-```env
-REACT_APP_BACKEND_URL=http://localhost:8000
-```
+## Principais funcionalidades confirmadas
 
-### Backend
+- Cadastro e login de aluno/professor.
+- Modo de demonstracao identificado no projeto.
+- Painel do aluno.
+- Painel do professor.
+- CRUD de materiais.
+- Leitura de QR Code e codigo de barras.
+- Geracao de QR Code para materiais e conteudos.
+- Registro de leituras e atividades.
+- Estatisticas e historico.
+- Upload de imagem para geracao de conteudo.
+- Exportacao/relatorio identificados nas telas e dependencias.
 
-Crie `backend/.env` a partir de [`backend/.env.example`](./backend/.env.example):
+## Como funciona
 
-```env
-MONGO_URL=mongodb://localhost:27017
-DB_NAME=logi3a
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
-USE_MOCK_DB=true
-```
+O aluno ou professor acessa a aplicacao, utiliza os paineis correspondentes e interage com materiais por meio de QR Code ou codigo de barras. O backend registra usuarios, materiais, leituras e atividades; o frontend apresenta dashboards, historico, geradores e scanners.
 
-Observações:
+## Tecnologias utilizadas
 
-- Se `USE_MOCK_DB=true` ou se o Mongo não responder no startup, a API usa um banco em memória para facilitar o desenvolvimento local.
-- Em modo memória, os dados são perdidos ao reiniciar o backend.
+- Python
+- FastAPI
+- MongoDB
+- React
+- JavaScript
+- Tailwind CSS
+- html5-qrcode
+- qrcode.react
+- jsPDF
+- Docker
+- Railway e Render identificados por arquivos de deploy
 
-## Como rodar
+## Arquitetura resumida
 
-### 1. Backend
+- `backend/`: API FastAPI, endpoints, persistencia, uploads e testes.
+- `frontend/`: aplicacao React, paginas educacionais, scanners, geradores e componentes.
+- `frontend/public/`: assets e versao standalone identificada.
+- `test_reports/`: registros historicos de testes.
+- `memory/`: documentacao de produto.
 
-```powershell
-cd backend
-python -m venv .venv
-.\.venv\Scripts\activate
-pip install -r requirements.txt
-Copy-Item .env.example .env
-uvicorn server:app --reload --host 0.0.0.0 --port 8000
-```
+## Status
 
-### 2. Frontend
+Versao 1.0 em desenvolvimento/manutencao. O projeto tem conteudo suficiente para portfolio educacional, mas deve passar por revisao antes de divulgacao ampla.
 
-```powershell
-cd frontend
-npm install
-Copy-Item .env.example .env
-npm start
-```
+## Relacao com outras versoes
 
-Frontend: `http://localhost:3000`  
-Backend: `http://localhost:8000`
+Existe um repositorio `dnacliptor-1.9`, mas ele aparece sem conteudo suficiente na listagem atual. Esta versao 1.0 e a base documentavel identificada ate aqui.
 
-## Seed de dados
+## Limitacoes conhecidas
 
-Você pode popular o sistema de duas formas:
+- O uso em producao nao foi confirmado.
+- Ha recursos de demonstracao e uploads no repositorio que exigem revisao antes de exposicao publica ampla.
+- Algumas informacoes originais eram voltadas a ambiente local e foram reorganizadas aqui como apresentacao de portfolio.
 
-- usar os botões de demo na tela de login, que disparam o seed automaticamente
-- chamar a API manualmente:
+## Participacao no desenvolvimento
 
-```powershell
-Invoke-RestMethod -Method Post -Uri http://localhost:8000/api/seed
-```
+O projeto demonstra capacidade de construir uma aplicacao educacional full stack, integrar leitura de codigos, organizar experiencias por perfil de usuario, criar dashboards e transformar processos logisticos em atividades praticas.
 
-## Fluxo principal validado no código
+## Autoria
 
-1. Cadastro e login de aluno/professor em `/login`
-2. Seed de dados demo
-3. CRUD de materiais em `/materiais`
-4. Leitura de QR Code ou código de barras
-5. Registro automático de `leituras` e `atividades` para aluno logado
-6. Estatísticas em `/dashboard` e `/professor`
-
-## Credenciais demo
-
-- Professor: `Professor Demo` / `123456`
-- Aluno: `Aluno Demo` / `123456`
-
-## Ajustes feitos
-
-- correção da árvore de dependências do frontend para instalação e build com CRA/CRACO
-- fallback seguro para `REACT_APP_BACKEND_URL` no frontend
-- carregamento automático de materiais em telas que dependem deles
-- registro automático de atividades a partir do scanner, além das leituras
-- atualização do dashboard para buscar leituras recentes
-- limpeza dos warnings de build do frontend
-- simplificação do `requirements.txt` do backend para o fluxo real do projeto
-- fallback do backend para banco em memória quando `MONGO_URL` não estiver configurado
-- configuração de CORS local padrão
-- criação de `.env.example` para frontend e backend
-
-## Limitação encontrada neste ambiente
-
-Neste workspace, a instalação do backend não pôde ser concluída porque o `pip` está bloqueado por proxy e retorna `407 Proxy Authentication Required` para o PyPI. O frontend foi instalado e buildado com sucesso; a parte do backend foi preparada para execução local, mas a validação final da API depende de um ambiente com acesso ao PyPI.
+Desenvolvido por Michele Santana — Kalion Tecnologia
