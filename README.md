@@ -78,4 +78,4 @@ O projeto demonstra capacidade de construir uma aplicacao educacional full stack
 
 ## Autoria
 
-Desenvolvido por Michele Santana — Kalion Tecnologia
+Desenvolvido por Alexandre Santana dos Santos — Kalion Tecnologia
